@@ -1,0 +1,9 @@
+---
+applications:
+- name: FabulousPriceFinder
+  buildpack: python_buildpack
+  memory: 256M
+  instances: 1
+  host: FabulousPriceFinder-${random-word}
+  path: .
+  command: python wsgi.py
