@@ -112,7 +112,7 @@
 
   
   <p style="text-align: center">
-  <a href="/displayall" value="View Database">View Database</a> | 
+  <a href="/displayall" value="View Database">View Database Edited</a> | 
   <a href="/getCurrentPrices" value="Check Current Prices">Get Prices</a>
   </p>
  
