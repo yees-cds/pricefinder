@@ -54,6 +54,8 @@ import cloudant
 import pprint
 import urllib
 
+from twilio.rest import TwilioRestClient
+
 # Configs from BlueMix 
 vcap_config = os.environ.get('VCAP_SERVICES')
 decoded_config = json.loads(vcap_config)
@@ -62,6 +64,12 @@ dbname = "fabulous-price-finder"
 account = None
 
 for key, value in decoded_config.iteritems():
+	if decoded_config[key][0]['name'].startswith('Twilio'):
+		twilio_creds = decoded_config[key][0]['credentials']
+		twilio_authToken = twilio_creds['authToken']
+		twilio_accountSID = twilio_creds['accountSID']
+		twilioClient = TwilioRestClient(twilio_accountSID, twilio_authToken)
+
 	if key.startswith('cloudant'):
 		cloudant_creds = decoded_config[key][0]['credentials']
 		cloudant_host = cloudant_creds['host']
@@ -78,7 +86,10 @@ for key, value in decoded_config.iteritems():
 		
 		response = db.put()
 		print response.json
-
+	
+	
+def sendTextWithMessage(message):
+	message = twilioClient.messages.create(to="+16172836931", from_="+1857399-2773", body=message)
 
 #Provide all the static css and js files under the static dir to browser
 @route('/static/:filename#.*#')
@@ -113,6 +124,7 @@ def getCurrentPrice(item):
 		price = soup.find(id=item["idToCheck"]).string	
 		
 		if price is not None:
+			sendTextWithMessage("The current price of %s is %s" % (item["name"], price))
 			
 			d = db.document(item["url"])
 			resp = d.merge({ 'url': item["url"], 'price': price})
