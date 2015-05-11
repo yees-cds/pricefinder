@@ -7,3 +7,4 @@ applications:
   host: yees-pricefinder
   path: .
   command: python wsgi.py
+  domain: bluemix.net
