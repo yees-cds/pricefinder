@@ -1,9 +1,9 @@
 ---
 applications:
-- name: FabulousPriceFinder
+- name: YeesPriceFinder
   buildpack: python_buildpack
   memory: 256M
   instances: 1
-  host: FabulousPriceFinder-${random-word}
+  host: yees-pricefinder
   path: .
   command: python wsgi.py
