@@ -1,4 +1,4 @@
-# The Fabulous Price Finder #
+# Yees Modified - The Fabulous Price Finder #
 
 ## Overview of the app ##
 
