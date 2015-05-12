@@ -1,4 +1,4 @@
-# Yees Modified - The Fabulous Price Finder #
+# Yees Modified updated - The Fabulous Price Finder #
 
 ## Overview of the app ##
 
